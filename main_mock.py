@@ -49,7 +49,7 @@ def main():
         summary = summarize_email(email_content)
         speak(f"Summary: {summary}")
 
-        # Generate dynamic actions
+        # suggesting dynamic actions
         suggested_actions = action_generator(f"Suggest actions for this email content: {email_content}")
         speak("Here are some actions you might consider: " + suggested_actions[0]['generated_text'])
 
