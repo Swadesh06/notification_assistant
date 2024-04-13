@@ -7,7 +7,7 @@ from speech_output import speak
 from url_handler import filter_urls, open_url
 from email_summarizer import summarize_email
 
-# Initialize an LLM pipeline for generating and interpreting suggestions
+# Initializing an LLM pipeline for generating and interpreting suggestions
 action_generator = pipeline("text-generation")   #model="gpt-model-for-email-actions"
 action_interpreter = pipeline("zero-shot-classification") #model="facebook/bart-large-mnli"
 
