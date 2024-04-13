@@ -1,5 +1,3 @@
-# config.py
-
 # Email settings
 EMAIL_ADDRESS = "swainsanket06@gmail.com"
 EMAIL_PASSWORD = "swadi2001"
