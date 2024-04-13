@@ -5,22 +5,22 @@ import email
 from email.header import decode_header
 import re
 from config import EMAIL_ADDRESS, EMAIL_PASSWORD, IMAP_SERVER, IMAP_PORT, KEYWORDS, REJECT_URLS
-from email_summarizer import summarize_email  # Importing the summarization function
+from email_summarizer import summarize_email
 
 def connect_to_email():
     mail = imaplib.IMAP4_SSL(IMAP_SERVER, IMAP_PORT)
     mail.login(EMAIL_ADDRESS, EMAIL_PASSWORD)
-    mail.select('inbox')  # Connect to the inbox.
+    mail.select('inbox') 
     return mail
 
 def search_emails(mail):
-    type, data = mail.search(None, 'UNSEEN')  # Search for unread emails
+    type, data = mail.search(None, 'UNSEEN')  # Only searching for unread emails
     mail_ids = data[0]
     id_list = mail_ids.split()
     summarized_emails = []
 
-    for num in id_list[::-1]:  # Start from the latest email
-        typ, data = mail.fetch(num, '(RFC822)')  # Fetch the email body (RFC822) for the given ID
+    for num in id_list[::-1]:  # The function will start reading from the latest email
+        typ, data = mail.fetch(num, '(RFC822)') 
         for response_part in data:
             if isinstance(response_part, tuple):
                 msg = email.message_from_bytes(response_part[1])
@@ -30,7 +30,7 @@ def search_emails(mail):
                 email_body = get_email_body(msg)
                 if any(keyword.lower() in email_body.lower() for keyword in KEYWORDS):
                     if not any(reject_url in email_body for reject_url in REJECT_URLS):
-                        summary = summarize_email(email_body)  # Summarize the email content
+                        summary = summarize_email(email_body)
                         summarized_emails.append((email_subject, summary))
     return summarized_emails
 
