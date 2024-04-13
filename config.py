@@ -13,9 +13,7 @@ KEYWORDS = ["urgent", "important", "meeting", "internship", "career", "job oppor
 REJECT_URLS = [
     "https://facebook.com",
     "https://twitter.com",
-    "https://instagram.com",
-    "https://linkedin.com"  # Assuming you want to filter out LinkedIn, although it's job-related
+    "https://instagram.com"
 ]
 
-# Other settings
 SUMMARY_LENGTH = 100  # Length of email summary
